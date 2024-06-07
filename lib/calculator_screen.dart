@@ -304,7 +304,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       Button.divide,
       Button.calculate,
     ].contains(value)
-        ? Colors.indigo.shade300
-        : Colors.indigo.shade900;
+        ? Colors.purple
+        : Colors.red;
   }
 }
