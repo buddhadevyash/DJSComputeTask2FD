@@ -7,8 +7,6 @@ class CalculatorScreen extends StatefulWidget {
   State<CalculatorScreen> createState() => _CalculatorScreenState();
 }
 
-
-
 class Button {
   static const String del = "DEL";
   static const String clr = "AC";
@@ -53,29 +51,21 @@ class Button {
   ];
 }
 
-
-
-
 class _CalculatorScreenState extends State<CalculatorScreen> {
   String number1 = "";
   String operand = "";
   String number2 = "";
 
-
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor:Colors.black,
-      body:
-
-
-      SafeArea(
+      backgroundColor: Colors.black,
+      body: SafeArea(
         bottom: false,
         child: Column(
           children: [
             // output
-
 
             Expanded(
               child: SingleChildScrollView(
@@ -84,21 +74,20 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   height: 250,
                   width: 400,
                   decoration: BoxDecoration(
-                    color:Colors.indigo.shade100,
+                    color: Colors.indigo.shade100,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       width: 3,
                       color: Colors.white,
                     ),
                   ),
-
                   alignment: Alignment.bottomRight,
                   padding: const EdgeInsets.all(16),
                   child: Text(
                     "$number1$operand$number2".isEmpty
                         ? "0"
                         : "$number1$operand$number2",
-                    style:TextStyle(
+                    style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
                       color: Colors.indigo.shade900,
@@ -121,13 +110,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               children: Button.buttonValues
                   .map(
                     (value) => SizedBox(
-                  width: value == Button.calculate
-                      ? screenSize.width / 2
-                      : (screenSize.width / 4),
-                  height: screenSize.width / 5,
-                  child: buildButton(value),
-                ),
-              )
+                      width: value == Button.calculate
+                          ? screenSize.width / 2
+                          : (screenSize.width / 4),
+                      height: screenSize.width / 5,
+                      child: buildButton(value),
+                    ),
+                  )
                   .toList(),
             )
           ],
@@ -164,7 +153,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       ),
     );
   }
-
 
   void onBtnTap(String value) {
     if (value == Button.del) {
@@ -244,7 +232,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     });
   }
 
-
   void clearAll() {
     setState(() {
       number1 = "";
@@ -265,25 +252,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     setState(() {});
   }
 
-
   void appendValue(String value) {
-
     if (value != Button.dot && int.tryParse(value) == null) {
-
       if (operand.isNotEmpty && number2.isNotEmpty) {
         calculate();
       }
       operand = value;
-    }
-
-    else if (number1.isEmpty || operand.isEmpty) {
+    } else if (number1.isEmpty || operand.isEmpty) {
       if (value == Button.dot && number1.contains(Button.dot)) return;
       if (value == Button.dot && (number1.isEmpty || number1 == Button.n0)) {
         value = "0.";
       }
       number1 += value;
-    }
-    else if (number2.isEmpty || operand.isNotEmpty) {
+    } else if (number2.isEmpty || operand.isNotEmpty) {
       if (value == Button.dot && number2.contains(Button.dot)) return;
       if (value == Button.dot && (number2.isEmpty || number2 == Button.n0)) {
         value = "0.";
@@ -293,18 +274,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
     setState(() {});
   }
+
   Color getButtonColor(value) {
     return [Button.del, Button.clr].contains(value)
         ? Colors.indigo.shade600
         : [
-      Button.per,
-      Button.multiply,
-      Button.add,
-      Button.subtract,
-      Button.divide,
-      Button.calculate,
-    ].contains(value)
-        ? Colors.purple
-        : Colors.red;
+            Button.per,
+            Button.multiply,
+            Button.add,
+            Button.subtract,
+            Button.divide,
+            Button.calculate,
+          ].contains(value)
+            ? Colors.yellowAccent
+            : Colors.orangeAccent;
   }
 }
