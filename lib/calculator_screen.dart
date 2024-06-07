@@ -288,5 +288,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           ].contains(value)
             ? Colors.yellowAccent
             : Colors.orangeAccent;
+
   }
 }
